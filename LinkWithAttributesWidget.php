@@ -146,16 +146,11 @@ class LinkWithAttributesWidget extends LinkWidget implements ContainerFactoryPlu
    * {@inheritdoc}
    */
   public function massageFormValues(array $values, array $form, FormStateInterface $form_state) {
-
     // Convert a class string to an array so that it can be merged reliable.
     foreach ($values as $delta => $value) {
       if (isset($value['options']['attributes']['class']) && is_string($value['options']['attributes']['class'])) {
         $values[$delta]['options']['attributes']['class'] = explode(' ', $value['options']['attributes']['class']);
       }
-      
-      if (!empty($value['language'])) {
-        $values[$delta]['options']['language'] = \Drupal::languageManager()->getLanguage($value['language']);
-      } 
     }
 
     return array_map(function (array $value) {
