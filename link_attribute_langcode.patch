@@ -1,0 +1,15 @@
+diff --git a/LinkWithAttributesWidget.php b/LinkWithAttributesWidget.php
+index 5f69353..c5cf0f9 100644
+--- a/LinkWithAttributesWidget.php
++++ b/LinkWithAttributesWidget.php
+@@ -151,6 +151,10 @@ class LinkWithAttributesWidget extends LinkWidget implements ContainerFactoryPlu
+       if (isset($value['options']['attributes']['class']) && is_string($value['options']['attributes']['class'])) {
+         $values[$delta]['options']['attributes']['class'] = explode(' ', $value['options']['attributes']['class']);
+       }
++      
++      if (!empty($value['language'])) {
++        $values[$delta]['options']['language'] = \Drupal::languageManager()->getLanguage($value['language']);
++      } 
+     }
+ 
+     return array_map(function (array $value) {
